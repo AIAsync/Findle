@@ -31,8 +31,8 @@ top_k = 5
 top_indices = np.argsort(similarities)[::-1][:top_k]
 print("\nTop", top_k, "Similar Profiles:\n")
 for idx in top_indices:
-    i = int(idx)  # <-- MUHIM O'ZGARISH
-    profile = dataset[i]  # <-- Endi xatolik yo‘q
+    i = int(idx)
+    profile = dataset[i]
     score = similarities[i]
     print(f"🔹 Similarity: {score:.3f}")
     print(f"👤 Name: {profile.get('FirstName', '')} {profile.get('LastName', '')}")
