@@ -19,7 +19,7 @@ def load_data():
 
 profiles, profile_embeddings, model = load_data()
 st.title("Findle AI")
-user_text = st.text_area("ABOUT", "QWE")
+user_text = st.text_area("Please, Describe your needed Person!", "Agile product owner with software engineering background, experienced in digital transformation, DevOps, CI/CD, and leading cross-functional teams in enterprise or education domains")
 
 if st.button("DEEP RESEARCH 🔭"):
     if not user_text.strip():
