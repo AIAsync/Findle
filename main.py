@@ -43,6 +43,8 @@ async def extract_data(request: ExtractionRequest):
             format=REAL_ESTATE_SCHEMA,
             options={
                 "temperature": 0.0,
+                "num_ctx": 2048,
+                "num_predict": 1024,
             }
         )
         
