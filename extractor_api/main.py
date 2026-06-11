@@ -2,31 +2,45 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import ollama
 import json
+import os
 
 app = FastAPI(
-    title="Data Extraction API",
-    description="Qwen2.5-7b orqali ma'lumotlarni berilgan JSON schema bo'yicha ajratib oluvchi API",
+    title="Real Estate Data Extraction API",
+    description="Qwen2.5-7b orqali real-estate.json schema asosida ko'chmas mulk ma'lumotlarini ajratuvchi API",
     version="1.0.0"
 )
 
+# Loyiha papkasidan real-estate.json faylini o'qish
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SCHEMA_PATH = os.path.join(BASE_DIR, "real-estate.json")
+
+try:
+    with open(SCHEMA_PATH, "r", encoding="utf-8") as f:
+        REAL_ESTATE_SCHEMA = json.load(f)
+except Exception as e:
+    print(f"Xatolik: {SCHEMA_PATH} topilmadi! Iltimos real-estate.json faylini loyiha papkasiga joylashtiring.")
+    REAL_ESTATE_SCHEMA = {}
+
+# Endi mijoz faqat text yuboradi
 class ExtractionRequest(BaseModel):
     text: str
-    json_schema: dict
 
 @app.post("/extract")
 async def extract_data(request: ExtractionRequest):
+    if not REAL_ESTATE_SCHEMA:
+        raise HTTPException(status_code=500, detail="Schema topilmadi, server xatoligi.")
+
     try:
         # Prompt modelga nima qilish kerakligini tushuntiradi
-        prompt = f"Extract information from the following text based on the provided JSON schema.\n\nText:\n{request.text}"
+        prompt = f"Extract information from the following real estate listing text based on the provided JSON schema. Ensure you accurately identify the property category (e.g. Apartments, Houses) and map specific details to 'specs'.\n\nText:\n{request.text}"
         
         # Ollama orqali modelga so'rov yuborish
-        # Ollama'ning 'format' parametriga JSON schema beriladi, shunda model faqat shu schemaga mos JSON qaytarishga majbur bo'ladi
         response = ollama.chat(
             model='qwen-extractor',
             messages=[
                 {'role': 'user', 'content': prompt}
             ],
-            format=request.json_schema,
+            format=REAL_ESTATE_SCHEMA,
             options={
                 "temperature": 0.0,
             }
@@ -39,7 +53,6 @@ async def extract_data(request: ExtractionRequest):
             extracted_json = json.loads(content)
             return {"status": "success", "data": extracted_json}
         except json.JSONDecodeError:
-            # Ba'zida model baribir markdown qoldirgan bo'lsa tozalashga urinib ko'ramiz
             cleaned_content = content.strip().replace('```json', '').replace('```', '')
             try:
                 extracted_json = json.loads(cleaned_content)
