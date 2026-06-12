@@ -44,15 +44,36 @@
           "properties": {
             "property_type": {
               "type": "string",
-              "description": "Property Type"
+              "description": "Property Type",
+              "enum": [
+                "Residential",
+                "Commercial",
+                "Industrial",
+                "Agricultural",
+                "Land",
+                "Other"
+              ]
             },
             "transaction_type": {
               "type": "string",
-              "description": "Transaction Type"
+              "description": "Transaction Type",
+              "enum": [
+                "Sale",
+                "Rent",
+                "Lease",
+                "Exchange"
+              ]
             },
             "payment_terms": {
               "type": "string",
-              "description": "Payment Terms"
+              "description": "Payment Terms",
+              "enum": [
+                "Cash",
+                "Mortgage",
+                "Installment",
+                "Exchange",
+                "Other"
+              ]
             },
             "total_area": {
               "type": "number",
@@ -92,7 +113,13 @@
             },
             "document_status": {
               "type": "string",
-              "description": "Document Status"
+              "description": "Document Status",
+              "enum": [
+                "Ready",
+                "In process",
+                "Not ready",
+                "Problematic"
+              ]
             },
             "contact": {
               "type": "string",
@@ -111,7 +138,7 @@
             "region",
             "district",
             "address",
-            "document_status",
+            "location",
             "contact"
           ]
         }
@@ -148,10 +175,26 @@
                         "type": "integer"
                       },
                       "building_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Brick",
+                          "Panel",
+                          "Monolithic",
+                          "Block",
+                          "Wood",
+                          "Other"
+                        ]
                       },
                       "condition": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Rough",
+                          "White box",
+                          "Cosmetic repair",
+                          "Euro repair",
+                          "Designer repair",
+                          "Needs repair"
+                        ]
                       },
                       "furnished": {
                         "type": "boolean"
@@ -199,7 +242,15 @@
                         "type": "number"
                       },
                       "condition": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Rough",
+                          "White box",
+                          "Cosmetic repair",
+                          "Euro repair",
+                          "Designer repair",
+                          "Needs repair"
+                        ]
                       },
                       "furnished": {
                         "type": "boolean"
@@ -256,7 +307,15 @@
                         "type": "number"
                       },
                       "condition": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Rough",
+                          "White box",
+                          "Cosmetic repair",
+                          "Euro repair",
+                          "Designer repair",
+                          "Needs repair"
+                        ]
                       },
                       "furnished": {
                         "type": "boolean"
@@ -301,7 +360,12 @@
                         "type": "boolean"
                       },
                       "bathroom_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Private",
+                          "Shared",
+                          "None"
+                        ]
                       },
                       "neighbors": {
                         "type": "integer"
@@ -343,7 +407,15 @@
                         "type": "number"
                       },
                       "condition": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Rough",
+                          "White box",
+                          "Cosmetic repair",
+                          "Euro repair",
+                          "Designer repair",
+                          "Needs repair"
+                        ]
                       },
                       "furnished": {
                         "type": "boolean"
@@ -373,7 +445,15 @@
                     "type": "object",
                     "properties": {
                       "office_class": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "A+",
+                          "A",
+                          "B+",
+                          "B",
+                          "C",
+                          "D"
+                        ]
                       },
                       "parking_spaces": {
                         "type": "integer"
@@ -388,7 +468,15 @@
                         "type": "boolean"
                       },
                       "condition": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Rough",
+                          "White box",
+                          "Cosmetic repair",
+                          "Euro repair",
+                          "Designer repair",
+                          "Needs repair"
+                        ]
                       }
                     }
                   }
@@ -421,7 +509,12 @@
                         "type": "boolean"
                       },
                       "traffic": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "High",
+                          "Medium",
+                          "Low"
+                        ]
                       },
                       "parking": {
                         "type": "boolean"
@@ -571,7 +664,14 @@
                     "type": "object",
                     "properties": {
                       "storage_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Dry",
+                          "Cold",
+                          "Freezing",
+                          "Hazardous",
+                          "Heated"
+                        ]
                       },
                       "ceiling_height": {
                         "type": "number"
@@ -610,7 +710,14 @@
                     "type": "object",
                     "properties": {
                       "storage_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Dry",
+                          "Cold",
+                          "Freezing",
+                          "Hazardous",
+                          "Heated"
+                        ]
                       },
                       "office_area": {
                         "type": "number"
@@ -655,7 +762,13 @@
                         "type": "boolean"
                       },
                       "soil_quality": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Excellent",
+                          "Good",
+                          "Average",
+                          "Poor"
+                        ]
                       },
                       "crop_history": {
                         "type": "string"
@@ -727,7 +840,13 @@
                     "type": "object",
                     "properties": {
                       "zoning": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Commercial",
+                          "Industrial",
+                          "Mixed-use",
+                          "Other"
+                        ]
                       },
                       "road_access": {
                         "type": "boolean"
@@ -868,7 +987,15 @@
                     "type": "object",
                     "properties": {
                       "garage_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Attached",
+                          "Detached",
+                          "Underground",
+                          "Metal",
+                          "Brick",
+                          "Other"
+                        ]
                       },
                       "electricity": {
                         "type": "boolean"
@@ -901,7 +1028,12 @@
                     "type": "object",
                     "properties": {
                       "indoor_outdoor": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Indoor",
+                          "Outdoor",
+                          "Covered"
+                        ]
                       },
                       "security": {
                         "type": "boolean"
@@ -940,7 +1072,15 @@
                         "type": "boolean"
                       },
                       "surface_type": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "Asphalt",
+                          "Concrete",
+                          "Gravel",
+                          "Dirt",
+                          "Paving slabs",
+                          "Other"
+                        ]
                       }
                     }
                   }
@@ -1006,7 +1146,12 @@
                         "type": "boolean"
                       },
                       "traffic": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                          "High",
+                          "Medium",
+                          "Low"
+                        ]
                       },
                       "parking": {
                         "type": "boolean"

@@ -1,4 +1,6 @@
 fastapi
 uvicorn
 pydantic
-ollama
+gliner
+fastembed
+numpy
